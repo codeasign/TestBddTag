@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankOperations.cs" />
+    <Compile Include="RealEstateClient.cs" />
     <Compile Include="SomeBank.cs" />
     <Compile Include="GetterSetterClass.cs" />
     <Compile Include="IAccounts.cs" />
