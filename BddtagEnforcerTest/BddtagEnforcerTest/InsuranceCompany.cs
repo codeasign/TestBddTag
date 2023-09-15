@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BddtagEnforcerTest
 {
-    class SomeBank : BankOperations
+    internal class InsuranceCompany
     {
-        public string BddFeatureMapper = "Accounts";
-
-        public void SomeFunction()
+        string BddFeatureMapper = "Insurance";
+        public void FetchRealEstates()
         {
 
         }
+
     }
 }
