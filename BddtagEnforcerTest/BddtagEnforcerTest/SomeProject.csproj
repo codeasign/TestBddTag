@@ -48,6 +48,7 @@
     <Compile Include="GetterSetterClass.cs" />
     <Compile Include="IAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TravelCompaniesStocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\BddTagEnforcer\BddTagEnforcer\BddTagEnforcer\bin\Debug\netstandard2.0\BddTagEnforcer.dll" />

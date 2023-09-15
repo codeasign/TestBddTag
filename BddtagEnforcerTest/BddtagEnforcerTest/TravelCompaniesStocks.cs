@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BddtagEnforcerTest
 {
-    internal class RealEstateClient
+    internal class TravelCompaniesStocks
     {
-        string BddFeatureMapper = "Accounts,Bank,Customer,Loans,StockIndex";
+        string BddFeatureMapper = "Accounts,Customer,StockIndex";
         public void FetchRealEstates()
-        { 
-        
+        {
+
         }
+
     }
 }

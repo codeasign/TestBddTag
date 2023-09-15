@@ -8,7 +8,7 @@ namespace BddtagEnforcerTest
 {
     internal class InsuranceCompany
     {
-        string BddFeatureMapper = "Insurance,ThirdParty";
+        string BddFeatureMapper = "Insurance,ThirdParty,StockIndex";
         public void FetchRealEstates()
         {
 
