@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BddtagEnforcerTest
 {
-    internal class InsuranceCompany
+    internal class Broker
     {
-        string BddFeatureMapper = "Insurance,ThirdParty";
+        string BddFeatureMapper = "Sebi,NSE,BSE";
         public void FetchRealEstates()
         {
 

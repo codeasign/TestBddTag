@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankOperations.cs" />
+    <Compile Include="Broker.cs" />
     <Compile Include="InsuranceCompany.cs" />
     <Compile Include="RealEstateClient.cs" />
     <Compile Include="GetterSetterClass.cs" />
