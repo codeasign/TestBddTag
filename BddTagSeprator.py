@@ -1,6 +1,6 @@
 import subprocess
-import os
 import re
+import json
 
 def list_cs_files_in_commit(commit_hash):
     try:
@@ -17,23 +17,24 @@ def list_cs_files_in_commit(commit_hash):
         print(f"An error occurred: {str(e)}")
         return None
 
-def search_variable_in_cs_files(cs_files, variable_name):
-    found_files = {}
+def find_variable_occurrences(cs_files, variable_name):
+    variable_occurrences = []
     for cs_file in cs_files:
         try:
             with open(cs_file, 'r', encoding='utf-8') as file:
                 lines = file.readlines()
                 for line_number, line in enumerate(lines, start=1):
-                    if re.search(rf'\b{variable_name}\b', line):
-                        if cs_file not in found_files:
-                            found_files[cs_file] = []
-                        found_files[cs_file].append((line_number, line.strip()))
+                    if re.search(rf'{variable_name} = "(.*?)"', line):
+                        matches = re.findall(rf'{variable_name} = "(.*?)"', line)
+                        for match in matches:
+                            variable_occurrences.append((cs_file, line_number, match))
         except Exception as e:
             print(f"Error reading file {cs_file}: {str(e)}")
     
-    return found_files
+    return variable_occurrences
 
 if __name__ == "__main__":
+    finalCommand=""
     commit_hash = input("Enter the commit hash: ")
     variable_name = "BddFeatureMapper"  # Change this to the variable name you want to search for
 
@@ -42,13 +43,41 @@ if __name__ == "__main__":
     if cs_files is not None:
         if cs_files:
             print(f"Searching for '{variable_name}' in .cs files of commit {commit_hash}:")
-            found_files = search_variable_in_cs_files(cs_files, variable_name)
-            if found_files:
-                for file, occurrences in found_files.items():
-                    print(f"In file: {file}")
-                    for line_number, line_content in occurrences:
-                        print(f"  Line {line_number}: {line_content}")
+            variable_occurrences = find_variable_occurrences(cs_files, variable_name)
+            if variable_occurrences:
+                tags = set()  # To store unique values
+                for _, _, tag in variable_occurrences:
+                    tags.update(tag.split(','))  # Split by commas and add to the set
+
+                # Convert set to a list to maintain order and remove duplicates
+                tags_list = list(tags)
+
+                # Create a JSON structure
+                tags_json = {"BddFeatureMapper": tags_list}
+
+                # Print the JSON structure
+                print(json.dumps(tags_json, indent=2))
+
+                counter = 0
+                categoryTextAppended =""
+                for category in tags_list:
+                    if counter:0
+                    categoryFetch = f"cat == {category} ||"
+                    counter = counter+1
+                    categoryTextAppended =  categoryTextAppended + categoryFetch
+                else:
+                    if(counter<len(tags_list)-1):
+                        categoryFetch = f"cat == {category} ||"
+                        categoryTextAppended =  categoryTextAppended + categoryFetch
+                
+                command = f"nunit3-console.exe \"D:\codes\mygitrepo\C#Learning\BddtagEnforcerTest\TestSpecFlowProject\\bin\Debug\\net6.0\TestSpecFlowProject.dll\" --where  "
+                categoryTextAppended = categoryTextAppended.rstrip(categoryTextAppended[-2])
+                finalCommand  = command + "\"" + categoryTextAppended + "\""
+
             else:
                 print(f"No occurrences of '{variable_name}' found in .cs files.")
         else:
             print(f"No .cs files found in commit {commit_hash}.")
+        
+    result = subprocess.run(finalCommand)
+    print(result)
