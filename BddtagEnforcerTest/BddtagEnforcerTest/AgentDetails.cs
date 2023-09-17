@@ -9,8 +9,8 @@ namespace BddtagEnforcerTest
     internal class AgentDetails
     {
 
-        //Added new tags
-        public string BddFeatureMapper = "Loans";
+        //Added new tags over here
+        public string BddFeatureMapper = "Loans,Accounts";
 
         public void SetAgentDetails()
         { 
