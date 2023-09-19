@@ -49,6 +49,7 @@
     <Compile Include="GetterSetterClass.cs" />
     <Compile Include="IAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockMarkets.cs" />
     <Compile Include="TravelCompaniesStocks.cs" />
   </ItemGroup>
   <ItemGroup>
