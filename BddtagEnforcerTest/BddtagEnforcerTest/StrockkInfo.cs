@@ -9,7 +9,7 @@ namespace BddtagEnforcerTest
 {
     internal class StrockkInfo
     {
-        public string BddFeatureMapper = "BSE,Broker";
+        public string BddFeatureMapper = "Insurance";
 
         public void StockInFo(String stockSign)
         { 
